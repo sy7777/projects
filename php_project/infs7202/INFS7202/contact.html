@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Contact</title>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <!--theme-style-->
+        <link rel="stylesheet" type="text/css" href="css/menu_style.css"/>
+        <link href="css/bootstrap_login.css" rel="stylesheet" type='text/css' media="all"/>
+        <link href="css/style_login.css" rel="stylesheet" type='text/css' media="all"/>
+        <link href="css/content.css" rel="stylesheet" type='text/css' media="all"/>
+        <script src="https://cdn.bootcss.com/jquery/1.10.0/jquery.min.js"></script>
+        <script type="text/javascript" src="js/menu.js"></script>
+        <script type="text/javascript" src="js/login.js"></script>
+        <!--//theme-style-->
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content=""/>
+
+        <!-- animation-effect -->
+        <link href="css/animate.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900'
+              rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet'
+              type='text/css'>
+        <script src="js/wow.min.js"></script>
+
+</head>
+<body>
+<div class="nav">
+        <ul>
+                <li class="nav-item">
+                        <a href="javascript:;">Menu<span class="a_ico"></span></a>
+                        <ul>
+                                <li><a href="login.php">Log in</a></li>
+                                <li><a href="register.php">Register</a></li>
+                                <li><a href="chat.php">Group Chat</a></li>
+                        </ul>
+                </li>
+
+
+                <li class="nav-item">
+                        <a href="javascript:;">More<span class="a_ico"></span></a>
+                        <ul>
+                                <li><a href="image.php">Upload Pictures</a></li>
+                                <li><a href="contact.html">contact</a></li>
+                                <li><a href="pdf.php">PDF</a></li>
+                        </ul>
+                </li>
+        </ul>
+</div>
+
+<!--content-->
+<div class="content_left">
+        <div class="map" id="map">
+                <h5>Google Map</h5>
+
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVvgay_D8b4JXlWKLI2yUmn67iIY2p-KI&callback=initMap">
+                </script>
+                <script>
+                        $(document).ready(function () {
+                                if(navigator.geolocation) {
+                                        navigator.geolocation.getCurrentPosition(
+                                                function (position) {
+                                                        console.log( position.coords.longitude );
+                                                        console.log( position.coords.latitude );
+                                                },
+                                                function (e) {
+                                                        throw(e.message);
+                                                }
+                                        )
+                                }else{
+                                        console.log('Unknown!');
+                                }
+                        });
+                        function initMap() {
+                              var myLatLng = {lat: -27.4954258, lng: 153.0098414};
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 4,
+                                       center: myLatLng
+                                });
+
+                                var marker = new google.maps.Marker({
+                                       position: myLatLng,
+                                        map: map,
+                                        title: 'The University of Queensland'
+                                });
+                        }
+                </script>
+                <style>
+                        .form input{
+                                color:#000!Important
+                        }
+                </style>
+        </div>
+        <div class="address">
+                <h4>Address</h4>
+                <p> University of Queensland</p>
+                <p>ph : +0415 590 320</p>
+                <p>Email : <a href="mailto:piecesy7@gmail.com">piecesy7@gmail.com</a></p>
+        </div>
+
+        <div style="margin-bottom:-10%;color:red;">
+                <div class="form" id="ws_form">
+                        <h5>Contact Form</h5>
+                        <form action="" method="POST">
+                                <div class="grid-contact">
+                                        <div class="col-md-6 contact-grid">
+                                                <p class="your-para">Name </p>
+                                                <input type="text" value="" id="name" onfocus="this.value='';"
+                                                       onblur="if (this.value == '') {this.value ='';}">
+                                        </div>
+                                        <div class="col-md-6 contact-grid">
+                                                <p class="your-para">Email</p>
+                                                <input type="text" value="" id="email" onfocus="this.value='';"
+                                                       onblur="if (this.value == '') {this.value ='';}">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                </div>
+                                <br/>
+                                <p class="your-para msg-para">MESSAGE</p>
+                                <textarea cols="77" rows="6" value=" " id="message" ></textarea>
+
+                                <div class="send">
+                                        <a style="background:#fff;padding:5px 20px;text-decoration:none"
+                                           href="javascript:;" id="send">sendmail
+                                        </a>
+                                </div>
+                        </form>
+                </div>
+
+                <div class="clearfix"></div>
+        </div>
+        <script>
+                $(document).ready(function () {
+                        $('#send').click(function send() {
+                                var name = $("#name").val();
+                                var email = $("#email").val();
+                                var message = $("#message").val();
+                                var em = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;
+                                if (em.test(email) && name != '' && message != '') {
+                                        $.ajax({
+                                                url: "ws_mail/sendmail.php",
+                                                method: "POST",
+                                                data: {name: name, email: email, message: message},
+                                                success: function (data) {
+                                                        alert('OK');
+                                                }
+                                        });
+                                }
+                        });
+                });
+        </script>
+</body>
+</html>
+

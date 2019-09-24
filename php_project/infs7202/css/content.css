@@ -1,0 +1,41 @@
+body{
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: white;
+}
+/*h1,h2,h3,h4,h5,h6,label,p{
+	margin:0;	
+}*/
+.content_left{
+	width:100%;
+	margin-left: 10%;
+}
+.map{
+	margin-left: 10%;
+	padding-top: 27%;
+	width:77%;
+	height: 25px;
+
+}
+.map h5{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 45px;
+}
+.form{
+	margin-left: 47%;
+	margin-top: -7%;
+	width:30%;
+		
+}
+.form h5{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 45px;
+	font-color:#456;
+}
+.send{
+	color: green;
+	padding-top: 25px;
+}
+.address{
+	margin-left: 10%;
+
+}
