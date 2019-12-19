@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="login">
+        <label for="email">Email:</label><input type="text" id="email"><br>
+        <label for="password">Password:</label><input type="password" id="password"><br>
+        <input type="button" value="login">
+        <a href="#" onclick="goRegister()">Register</a>
+    </div>
+    <div id="register" style="display: none;">
+        <label for="email1">Email:</label><input type="text" id="email1"><br>
+        <label for="password1">Password:</label><input type="password" id="password1"><br>
+        <input type="button" value="register" onclick="register()">
+        <a href="#" onclick="gologin()">Login</a>
+    </div>
+
+    <script>
+        function goRegister() {
+            const R = document.getElementById("register");
+            const L = document.getElementById("login");
+
+            if (R.style.display === "none" && L.style.display !== "none") {
+                R.style.display = "";
+                L.style.display = "none";
+            }
+
+        }
+        const gologin = function () {
+            const R = document.getElementById("register");
+            const L = document.getElementById("login");
+
+            if (R.style.display === "" && L.style.display !== "") {
+                R.style.display = "none";
+                L.style.display = "";
+            }
+        }
+
+        function register() {
+            const E = document.getElementById("email1").value;
+            const P = document.getElementById("password1").value;
+            if (!E || !P) {
+                alert("youdongxi");
+            } else {
+                axios.post("http://localhost:8080/users/register", { email: E, password: P }).then(data => {
+                    console.log(data.data);
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
+
+
+
+
+        }
+    </script>
+</body>
+
+</html>

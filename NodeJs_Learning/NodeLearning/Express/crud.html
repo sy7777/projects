@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../lib/axios.min.js"></script>
+</head>
+
+<body>
+    <input type="text" id="name">
+    <button onclick="sendAjax()">Send</button><br />
+
+    <input type="text" placeholder="input name" id="userName"><br />
+    <input type="text" placeholder="Enter the age" id="age"><br>
+    <input type="button" value="Register" onclick="register()">
+
+    <div id="div">
+        <p>Hello, world</p>
+    </div>
+
+
+
+    <script>
+        document.getElementById("div").innerText = "<h2>biubiubiu</h2>";
+        function sendAjax() {
+            const name = document.getElementById("name").value;
+            axios.get(`http://localhost:8080/all_students/12?name=${name}`).then(data => {
+                console.log(data.data);
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+
+        function register() {
+            const name = document.getElementById("userName").value;
+            const age = document.getElementById("age").value;
+            if (!Number.isInteger(age)) {
+                alert("Age must be a number")
+            } else {
+                axios.post(`http://localhost:8080/register`, { "name": name, "age": parseInt(age) }).then(data => {
+                    console.log(data.data);
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>
